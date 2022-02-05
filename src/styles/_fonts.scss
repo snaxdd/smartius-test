@@ -1,5 +1,12 @@
+$family-light: 'Roboto-Light';
 $family-regular: 'Roboto-Regular';
 $family-medium: 'Roboto-Medium';
+
+@font-face {
+  font-family: "Roboto-Light";
+  font-weight: 300;
+  src: url("../assets/fonts/Roboto-Light.ttf") format("truetype");
+}
 
 @font-face {
   font-family: "Roboto-Regular";
