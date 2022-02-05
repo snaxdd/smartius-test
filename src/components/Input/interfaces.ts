@@ -6,6 +6,7 @@ export interface InputProps {
   value: string | number;
   type?: InputTypes;
   placeholder?: string;
+  title?: string;
 }
 
 export type InputTypes = "text" | "password" | "number";

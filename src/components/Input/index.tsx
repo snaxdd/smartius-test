@@ -7,18 +7,22 @@ export const Input: FC<InputProps> = ({
   type = "text",
   classNames = "",
   placeholder,
+  title,
 }) => {
   let [focused, setFocused] = useState(false);
   let toggleFocused = () => setFocused((prevState) => !prevState);
 
   return (
-    <input
-      className={`input ${focused ? "input--focused" : ""} ${classNames}`}
-      type={type}
-      onChange={onChange}
-      placeholder={placeholder}
-      onFocus={toggleFocused}
-      onBlur={toggleFocused}
-    />
+    <div className={`input ${focused ? "input--focused" : ""} ${classNames}`}>
+      {title && <span className="input_title">{title}</span>}
+      <input
+        className="input_element"
+        type={type}
+        onChange={onChange}
+        placeholder={placeholder}
+        onFocus={toggleFocused}
+        onBlur={toggleFocused}
+      />
+    </div>
   );
 };
