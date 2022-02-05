@@ -1,7 +1,7 @@
 .button {
   @include defaultHover;
   height: 50px;
-  width: 220px;
+  min-width: 220px;
   border: none;
   border-radius: 25px;
   background-color: $color-accent;
@@ -15,11 +15,6 @@
   &:disabled {
     background-color: $color-disabled;
     cursor: default;
-  }
-
-  &_title {
-    @include ellipsisText;
-    max-width: 140px;
   }
 
   &_icon {
