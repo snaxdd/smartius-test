@@ -6,4 +6,6 @@ export interface ButtonProps {
   onClick?: () => void;
   icon?: IconNames;
   iconFill?: string;
+  disabled?: boolean;
+  isLoading?: boolean;
 }

@@ -12,6 +12,11 @@
   padding: 13px 24px;
   cursor: pointer;
 
+  &:disabled {
+    background-color: $color-disabled;
+    cursor: default;
+  }
+
   &_title {
     @include ellipsisText;
     max-width: 140px;
