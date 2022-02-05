@@ -11,12 +11,14 @@ export const Button: FC<ButtonProps> = ({
   iconFill = "white",
   isLoading = false,
   disabled = false,
+  width,
 }) => {
   return (
     <button
       className={`button ${classNames}`}
       disabled={disabled}
       onClick={onClick}
+      style={{ width }}
     >
       {isLoading ? (
         <Spinner />

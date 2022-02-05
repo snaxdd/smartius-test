@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { InputTypes } from "./types";
 
 export interface InputProps {
   classNames?: string;
@@ -8,5 +9,3 @@ export interface InputProps {
   placeholder?: string;
   title?: string;
 }
-
-export type InputTypes = "text" | "password" | "number";

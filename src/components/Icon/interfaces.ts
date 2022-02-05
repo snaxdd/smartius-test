@@ -1,7 +1,7 @@
-import { IconNames } from "./iconNames";
+import { Types } from "./types";
 
 export interface IconProps {
-  name: IconNames;
+  name: Types;
   fill?: string;
   classNames?: string;
 }

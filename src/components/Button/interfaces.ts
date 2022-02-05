@@ -1,11 +1,12 @@
-import { IconNames } from "../Icon/iconNames";
+import { Types } from "../Icon/types";
 
 export interface ButtonProps {
   title?: string;
   classNames?: string;
   onClick?: () => void;
-  icon?: IconNames;
+  icon?: Types;
   iconFill?: string;
   disabled?: boolean;
   isLoading?: boolean;
+  width?: number | string;
 }
