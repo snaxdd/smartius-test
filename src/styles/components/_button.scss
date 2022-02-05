@@ -1,0 +1,23 @@
+.button {
+  @include defaultHover;
+  height: 50px;
+  width: 220px;
+  border: none;
+  border-radius: 25px;
+  background-color: $color-accent;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 24px;
+  cursor: pointer;
+
+  &_title {
+    @include ellipsisText;
+    max-width: 140px;
+  }
+
+  &_icon {
+    margin-right: 8px;
+  }
+}
