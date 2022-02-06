@@ -1,4 +1,8 @@
 .note-editor {
+  background-color: white;
+  padding: 40px 65px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+
   &_interface-container {
     display: flex;
     flex-direction: row;

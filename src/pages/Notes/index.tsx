@@ -3,6 +3,8 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { IconTypes } from "../../components/Icon/types";
 import { Note } from "../../components/Note";
+import { AddNoteEditor } from "../../components/AddNoteEditor";
+import { Modal } from "../../components/Modal";
 
 let notes = [
   {
@@ -51,6 +53,10 @@ export const NotesPage = () => {
   return (
     <>
       <Header />
+      <Modal
+        isOpened={false}
+        children={<AddNoteEditor stylesContainer={{ width: 470 }} />}
+      />
       <main className="notes-page">
         <div className="notes-page_container">
           <div className="notes-page_title-container">

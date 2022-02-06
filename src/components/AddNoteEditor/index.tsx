@@ -10,6 +10,7 @@ import { ClickableIcon } from "../ClickableIcon";
 import { IconTypes } from "../Icon/types";
 import { Input } from "../Input";
 import { Button } from "../Button";
+import { AddNoteEditorProps } from "./interfaces";
 
 enum EditorStyles {
   Bold = "BOLD",
@@ -17,7 +18,10 @@ enum EditorStyles {
   Underline = "UNDERLINE",
 }
 
-export const AddNoteEditor: FC = () => {
+export const AddNoteEditor: FC<AddNoteEditorProps> = ({
+  classNames = "",
+  stylesContainer,
+}) => {
   const [textareaActive, setTextareaActive] = useState(false);
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
@@ -37,7 +41,7 @@ export const AddNoteEditor: FC = () => {
   };
 
   return (
-    <div style={{ padding: 25, backgroundColor: "white" }}>
+    <div style={stylesContainer} className="note-editor">
       <div className="note-editor_interface-container">
         <ClickableIcon
           classNames="note-editor_clickable-icon"

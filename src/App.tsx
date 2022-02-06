@@ -1,10 +1,13 @@
 import React from "react";
-import { AddNoteEditor } from "./components/AddNoteEditor";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { NotesPage } from "./pages/Notes";
 
 export function App() {
   return (
-    <main>
-      <AddNoteEditor />
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<NotesPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
