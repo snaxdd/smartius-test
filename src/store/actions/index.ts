@@ -1,1 +1,5 @@
-export const RootActionCreators = {};
+import * as NotesActionCreators from "./notesActions";
+
+export const RootActionCreators = {
+  ...NotesActionCreators,
+};

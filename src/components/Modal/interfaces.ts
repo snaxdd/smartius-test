@@ -1,4 +1,6 @@
+import { MouseEvent } from "react";
+
 export interface ModalProps {
   isOpened?: boolean;
-  onAreaClick?: () => void;
+  onAreaClick?: (event: MouseEvent<HTMLElement>) => void;
 }
