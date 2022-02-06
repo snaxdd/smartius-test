@@ -1,6 +1,8 @@
 export enum COLORS {
   ACCENT = "#8ADD37",
   TEXT_DARK = "#333333",
+  TEXT_DARK_LIGHTEN = "#CCCCCC",
   TEXT_DARK_SECONDARY = "#A1A4B5",
   WHITE = "#FFF",
+  DISABLED = "#7a7a7a",
 }

@@ -1,0 +1,60 @@
+.note-editor {
+  &_interface-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    border-bottom: 1px $color-text-dark-lighten solid;
+    padding-bottom: 13px;
+  }
+
+  &_clickable-icon {
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+
+  &_text-title {
+    @extend .input_title;
+  }
+
+  &_title-input {
+    margin-bottom: 24px;
+  }
+
+  &_text-container {
+    background-color: $color-background-secondary;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    height: 85px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-bottom: 40px;
+    transition: border 0.2s ease;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    & .DraftEditor-root {
+      padding: 16px;
+      height: 100%;
+    }
+
+    & .DraftEditor-editorContainer,
+    & .public-DraftEditor-content {
+      height: 100%;
+    }
+
+    &--active {
+      border-color: $color-accent;
+    }
+  }
+
+  &_add-button {
+    margin: 0 auto;
+  }
+}

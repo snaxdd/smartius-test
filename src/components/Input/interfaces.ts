@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, CSSProperties } from "react";
 import { InputTypes } from "./types";
 
 export interface InputProps {

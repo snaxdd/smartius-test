@@ -1,14 +1,12 @@
 .button {
   @include defaultHover;
+  @include flexCenter;
   height: 50px;
   width: 100%;
   border: none;
   border-radius: 25px;
   background-color: $color-accent;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 13px 24px;
   cursor: url('../../assets/icons/icon_cursor.svg'), auto;
 

@@ -1,0 +1,13 @@
+.clickable-icon {
+  @include flexCenter;
+  width: 26px;
+  height: 26px;
+  background-color: transparent;
+  border-radius: 5px;
+  cursor: url('../../assets/icons/icon_cursor.svg'), auto;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba($color-accent, 0.1);
+  }
+}
