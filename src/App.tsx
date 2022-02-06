@@ -1,6 +1,10 @@
 import React from "react";
-import { NotesPage } from "./pages/Notes";
+import { AddNoteEditor } from "./components/AddNoteEditor";
 
 export function App() {
-  return <NotesPage />;
+  return (
+    <main>
+      <AddNoteEditor />
+    </main>
+  );
 }
