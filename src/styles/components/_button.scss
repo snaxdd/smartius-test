@@ -1,7 +1,7 @@
 .button {
   @include defaultHover;
   height: 50px;
-  min-width: 220px;
+  width: 100%;
   border: none;
   border-radius: 25px;
   background-color: $color-accent;

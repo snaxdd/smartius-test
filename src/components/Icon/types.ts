@@ -1,4 +1,4 @@
-export enum Types {
+export enum IconTypes {
   Add = "add",
   Arrow = "arrow",
   Bold = "bold",
