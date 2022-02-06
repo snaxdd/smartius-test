@@ -1,10 +1,14 @@
 @import 'fonts';
-@import 'global';
 @import 'colors';
 @import 'mixins';
+@import 'global';
 
 /// Components
 @import 'components/button';
 @import 'components/spinner';
 @import 'components/input';
 @import 'components/note';
+@import 'components/header';
+
+/// Pages
+@import 'pages/notes-page';
