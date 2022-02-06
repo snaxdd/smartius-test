@@ -1,21 +1,19 @@
 import React, { FC, useEffect, useState } from "react";
-import {
-  convertFromRaw,
-  convertToRaw,
-  Editor,
-  EditorState,
-  RichUtils,
-} from "draft-js";
+import { Editor, EditorState, RichUtils } from "draft-js";
 import { ClickableIcon } from "../ClickableIcon";
 import { IconTypes } from "../Icon/types";
 import { Input } from "../Input";
 import { Button } from "../Button";
 import { AddNoteEditorProps } from "./interfaces";
+import { stateToHTML } from "draft-js-export-html";
+import { INote } from "../../models/note";
 
 enum EditorStyles {
   Bold = "BOLD",
   Italic = "ITALIC",
   Underline = "UNDERLINE",
+  Disordered = "unordered-list-item",
+  Ordered = "ordered-list-item",
 }
 
 export const AddNoteEditor: FC<AddNoteEditorProps> = ({
@@ -30,18 +28,34 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
   let toggleTextareaState = () => setTextareaActive((prevState) => !prevState);
 
   let onChange = (type: EditorStyles) => {
-    setEditorState((prevState) =>
-      RichUtils.toggleInlineStyle(editorState, type)
-    );
+    setEditorState((prevState) => RichUtils.toggleInlineStyle(prevState, type));
   };
 
-  let onBoldClick = () => {
-    onChange(EditorStyles.Bold);
-    console.log(convertToRaw(editorState.getCurrentContent()));
+  let onBoldClick = () => onChange(EditorStyles.Bold);
+  let onItalicClick = () => onChange(EditorStyles.Italic);
+  let onUnderlineClick = () => onChange(EditorStyles.Underline);
+  let onDisorderedClick = () =>
+    setEditorState((prevState) =>
+      RichUtils.toggleBlockType(prevState, EditorStyles.Disordered)
+    );
+  let onOrderedClick = () =>
+    setEditorState((prevState) =>
+      RichUtils.toggleBlockType(prevState, EditorStyles.Ordered)
+    );
+
+  let onAddNoteClick = () => {
+    let currentContent = editorState.getCurrentContent();
+    let html = stateToHTML(currentContent);
+    let note: INote = {
+      id: Date.now(),
+      title: "test",
+      createdAt: Date.now().toString(),
+      text: html,
+    };
   };
 
   return (
-    <div style={stylesContainer} className="note-editor">
+    <div style={stylesContainer} className={`note-editor ${classNames}`}>
       <div className="note-editor_interface-container">
         <ClickableIcon
           classNames="note-editor_clickable-icon"
@@ -50,22 +64,22 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
         />
         <ClickableIcon
           classNames="note-editor_clickable-icon"
-          onClick={() => {}}
+          onClick={onItalicClick}
           icon={IconTypes.Italic}
         />
         <ClickableIcon
           classNames="note-editor_clickable-icon"
-          onClick={() => {}}
+          onClick={onUnderlineClick}
           icon={IconTypes.Underline}
         />
         <ClickableIcon
           classNames="note-editor_clickable-icon"
-          onClick={() => {}}
+          onClick={onOrderedClick}
           icon={IconTypes.Ordered}
         />
         <ClickableIcon
           classNames="note-editor_clickable-icon"
-          onClick={() => {}}
+          onClick={onDisorderedClick}
           icon={IconTypes.Disordered}
         />
         <ClickableIcon
@@ -97,6 +111,7 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
         title="Добавить"
         width={177}
         classNames="note-editor_add-button"
+        onClick={onAddNoteClick}
       />
     </div>
   );
