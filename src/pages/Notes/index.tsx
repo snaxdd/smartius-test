@@ -5,6 +5,7 @@ import { IconTypes } from "../../components/Icon/types";
 import { Note } from "../../components/Note";
 import { AddNoteEditor } from "../../components/AddNoteEditor";
 import { Modal } from "../../components/Modal";
+import { Link } from "react-router-dom";
 
 let notes = [
   {
@@ -70,10 +71,15 @@ export const NotesPage = () => {
           {notes.length && (
             <div className="notes-page_note-container">
               {notes.map((note) => (
-                <Note
-                  title={note.title + ` ${note.id}`}
-                  subTitle={note.subTitle}
-                  key={note.id}
+                <Link
+                  to={`/note/${note.id}`}
+                  children={
+                    <Note
+                      title={note.title + ` ${note.id}`}
+                      subTitle={note.subTitle}
+                      key={note.id}
+                    />
+                  }
                 />
               ))}
             </div>
