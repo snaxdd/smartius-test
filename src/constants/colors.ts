@@ -1,5 +1,6 @@
-export const COLORS = {
-  ACCENT: "#8ADD37",
-  TEXT_DARK: "#333333",
-  TEXT_DARK_SECONDARY: "#A1A4B5",
-};
+export enum COLORS {
+  ACCENT = "#8ADD37",
+  TEXT_DARK = "#333333",
+  TEXT_DARK_SECONDARY = "#A1A4B5",
+  WHITE = "#FFF",
+}

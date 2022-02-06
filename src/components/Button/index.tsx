@@ -2,13 +2,14 @@ import React, { FC } from "react";
 import { ButtonProps } from "./interfaces";
 import { Icon } from "../Icon";
 import { Spinner } from "../Spinner";
+import { COLORS } from "../../constants/colors";
 
 export const Button: FC<ButtonProps> = ({
   onClick = () => {},
   classNames = "",
   title,
   icon,
-  iconFill = "white",
+  iconFill = COLORS.WHITE,
   isLoading = false,
   disabled = false,
   width,
