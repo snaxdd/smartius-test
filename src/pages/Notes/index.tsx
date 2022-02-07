@@ -14,10 +14,10 @@ export const NotesPage = () => {
   const { notes, loading, error } = useAppSelector(
     (state) => state.notesReducer
   );
-  const { setNotes } = useActions();
+  const { getNotes } = useActions();
 
   useEffect(() => {
-    setNotes();
+    getNotes();
   }, []);
 
   const toggleModalShow = () => setShowModal((prevState) => !prevState);

@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FC, useState } from "react";
-import { Editor, EditorState, RichUtils } from "draft-js";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import Draft, { Editor, EditorState, RichUtils, ContentState } from "draft-js";
 import { ClickableIcon } from "../ClickableIcon";
 import { IconTypes } from "../Icon/types";
 import { Input } from "../Input";
@@ -12,6 +12,7 @@ import { StorageHelper } from "../../helpers/storage";
 import { StorageKeys } from "../../constants/storage";
 import { DateHelper } from "../../helpers/date";
 import { rootStore } from "../../store";
+import { convertFromHTML } from "draft-js";
 
 enum EditorStyles {
   Bold = "BOLD",
@@ -24,13 +25,24 @@ enum EditorStyles {
 export const AddNoteEditor: FC<AddNoteEditorProps> = ({
   classNames = "",
   stylesContainer,
+  editorContent,
+  title,
+  noteId,
+  isEdit = false,
 }) => {
   const [textareaActive, setTextareaActive] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const { addNewNote } = useActions();
+  const { addNewNote, setNotes } = useActions();
+
+  useEffect(() => {
+    if (editorContent && title) {
+      setEditableData(editorContent);
+      setNoteTitle(title);
+    }
+  }, []);
 
   let toggleTextareaState = () => setTextareaActive((prevState) => !prevState);
   let onChange = (type: EditorStyles) => {
@@ -49,14 +61,16 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
     setEditorState((prevState) =>
       RichUtils.toggleBlockType(prevState, EditorStyles.Ordered)
     );
-  let onAddNoteClick = async () => {
+  let getHtmlContent = () => {
     let currentContent = editorState.getCurrentContent();
-    let html = stateToHTML(currentContent);
+    return stateToHTML(currentContent);
+  };
+  let onAddNoteClick = async () => {
     let note: INote = {
       id: Date.now(),
       title: noteTitle,
       createdAt: DateHelper.getDateNow(),
-      text: html,
+      text: getHtmlContent(),
     };
     addNewNote(note);
     await saveNoteToStorage();
@@ -64,6 +78,31 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
   let saveNoteToStorage = async () => {
     let { notesReducer } = rootStore.getState();
     await StorageHelper.setItem(StorageKeys.Notes, notesReducer.notes);
+  };
+  let setEditableData = (editorContent: string) => {
+    const blocksFromHtml = convertFromHTML(editorContent);
+    const { contentBlocks, entityMap } = blocksFromHtml;
+    const contentState = ContentState.createFromBlockArray(
+      contentBlocks,
+      entityMap
+    );
+    const editorState = EditorState.createWithContent(contentState);
+    setEditorState(editorState);
+  };
+  let onEditNote = async () => {
+    let { notesReducer } = rootStore.getState();
+    let newNotes: INote[] = notesReducer.notes.map((note) =>
+      note.id === noteId
+        ? {
+            ...note,
+            title: noteTitle,
+            createdAt: DateHelper.getDateNow(),
+            text: getHtmlContent(),
+          }
+        : note
+    );
+    setNotes(newNotes);
+    await saveNoteToStorage();
   };
 
   return (
@@ -120,10 +159,10 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
         />
       </div>
       <Button
-        title="Добавить"
+        title={isEdit ? "Сохранить" : "Добавить"}
         width={177}
         classNames="note-editor_add-button"
-        onClick={onAddNoteClick}
+        onClick={isEdit ? onEditNote : onAddNoteClick}
       />
     </div>
   );

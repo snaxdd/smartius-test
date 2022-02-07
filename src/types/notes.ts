@@ -30,6 +30,11 @@ interface SetNotesError {
   payload: string;
 }
 
+interface SetNotes {
+  type: NotesActionTypes.SET_NOTES;
+  payload: INote[];
+}
+
 interface AddNewNote {
   type: NotesActionTypes.ADD_NEW_NOTE;
 }
@@ -48,6 +53,7 @@ export type TNotesState =
   | GetNotesAction
   | SetNotesSuccess
   | SetNotesError
+  | SetNotes
   | AddNewNote
   | AddNewNoteSuccess
   | AddNewNoteError;

@@ -4,7 +4,7 @@ import { INote } from "../../models/note";
 import { StorageHelper } from "../../helpers/storage";
 import { StorageKeys } from "../../constants/storage";
 
-export let setNotes = () => {
+export let getNotes = () => {
   return async (dispatch: Dispatch<TNotesState>) => {
     try {
       dispatch({ type: NotesActionTypes.GET_NOTES });
@@ -26,6 +26,21 @@ export let addNewNote = (note: INote) => {
     try {
       dispatch({ type: NotesActionTypes.ADD_NEW_NOTE });
       dispatch({ type: NotesActionTypes.ADD_NEW_NOTE_SUCCESS, payload: note });
+    } catch (e) {
+      let errorString: string = "Notes load error";
+      dispatch({
+        type: NotesActionTypes.SET_NOTES_ERROR,
+        payload: errorString,
+      });
+      throw new Error(errorString);
+    }
+  };
+};
+
+export let setNotes = (notes: INote[]) => {
+  return async (dispatch: Dispatch<TNotesState>) => {
+    try {
+      dispatch({ type: NotesActionTypes.SET_NOTES, payload: notes });
     } catch (e) {
       let errorString: string = "Notes load error";
       dispatch({

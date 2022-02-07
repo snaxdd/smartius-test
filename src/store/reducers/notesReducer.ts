@@ -17,6 +17,8 @@ export const notesReducer = (
       return { ...state, loading: false, error: "", notes: action.payload };
     case NotesActionTypes.SET_NOTES_ERROR:
       return { ...state, loading: false, error: action.payload };
+    case NotesActionTypes.SET_NOTES:
+      return { ...state, notes: action.payload };
     case NotesActionTypes.ADD_NEW_NOTE:
       return { ...state, loading: true };
     case NotesActionTypes.ADD_NEW_NOTE_SUCCESS:

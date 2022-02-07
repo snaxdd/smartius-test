@@ -16,6 +16,7 @@ export const Input: FC<InputProps> = ({
     <div className={`input ${focused ? "input--focused" : ""} ${classNames}`}>
       {title && <span className="input_title">{title}</span>}
       <input
+        value={value}
         className="input_element"
         type={type}
         onChange={onChange}
