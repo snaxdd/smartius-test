@@ -4,7 +4,7 @@ import { INote } from "../../models/note";
 import { StorageHelper } from "../../helpers/storage";
 import { StorageKeys } from "../../constants/storage";
 
-export let getNotes = () => {
+export let setNotes = () => {
   return async (dispatch: Dispatch<TNotesState>) => {
     try {
       dispatch({ type: NotesActionTypes.GET_NOTES });
