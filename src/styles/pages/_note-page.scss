@@ -2,4 +2,8 @@
   position: relative;
   height: 100%;
   background-color: $color-background-secondary;
+
+  &_content-container {
+    padding-top: 26px;
+  }
 }

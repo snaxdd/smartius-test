@@ -1,0 +1,21 @@
+.user-comment {
+  padding-bottom: 40px;
+  border-bottom: 1px solid $color-underline;
+
+  &_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_comment-container {
+    color: $color-text-comment;
+    margin-bottom: 32px;
+  }
+
+  &_date {
+    font-size: 18px;
+    font-family: $family-regular;
+    color: $color-text-dark-secondary;
+  }
+}

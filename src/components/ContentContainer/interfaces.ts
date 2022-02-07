@@ -9,4 +9,5 @@ export interface ContentContainerProps {
   onButtonClick?: (event: MouseEvent<HTMLElement>) => void;
   buttonIcon?: IconTypes;
   classNames?: string;
+  backButtonLink?: string;
 }

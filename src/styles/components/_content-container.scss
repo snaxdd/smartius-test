@@ -26,4 +26,10 @@
     padding-left: 26px;
     margin-bottom: 16px;
   }
+
+  &_back-button {
+    transform: rotate(180deg);
+    margin-bottom: 28px;
+    fill: $color-text-dark-secondary;
+  }
 }

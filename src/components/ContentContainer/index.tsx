@@ -4,6 +4,7 @@ import { Button } from "../Button";
 import { IconTypes } from "../Icon/types";
 import { Link } from "react-router-dom";
 import { Note } from "../Note";
+import { Icon } from "../Icon";
 
 export const ContentContainer: FC<ContentContainerProps> = ({
   children,
@@ -14,9 +15,21 @@ export const ContentContainer: FC<ContentContainerProps> = ({
   buttonTitle,
   buttonIcon,
   classNames = "",
+  backButtonLink = "",
 }) => {
   return (
     <div className={`content-container ${classNames}`}>
+      {backButtonLink && (
+        <Link
+          to={backButtonLink}
+          children={
+            <Icon
+              name={IconTypes.Arrow}
+              classNames="content-container_back-button"
+            />
+          }
+        />
+      )}
       <div className="content-container_title-container">
         <h1 className="content-container_title">{title}</h1>
         <Button
