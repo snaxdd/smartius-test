@@ -31,11 +31,13 @@ export const NotesPage = () => {
   return (
     <>
       <Header />
-      <Modal
-        onAreaClick={closeModal}
-        isOpened={showModal}
-        children={<AddNoteEditor stylesContainer={{ width: 470 }} />}
-      />
+      {showModal && (
+        <Modal
+          onAreaClick={closeModal}
+          isOpened={showModal}
+          children={<AddNoteEditor stylesContainer={{ width: 470 }} />}
+        />
+      )}
       <main className="notes-page">
         <div className="notes-page_container">
           <div className="notes-page_title-container">
@@ -56,16 +58,13 @@ export const NotesPage = () => {
                   key={note.id}
                   to={`/note/${note.id}`}
                   children={
-                    <Note
-                      title={note.title + ` ${note.id}`}
-                      createdAt={note.createdAt}
-                    />
+                    <Note title={note.title} createdAt={note.createdAt} />
                   }
                 />
               ))}
             </div>
           ) : (
-            <span>Список заметок пустой</span>
+            <span>Список заметок пуст</span>
           )}
         </div>
       </main>

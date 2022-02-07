@@ -11,10 +11,9 @@ export enum NotesActionTypes {
   SET_NOTES_SUCCESS = "SET_NOTES_SUCCESS",
   SET_NOTES_ERROR = "SET_NOTES_ERROR",
   SET_NOTES = "SET_NOTES",
-  GET_NOTE = "GET_NOTE",
-  SET_NOTE_SUCCESS = "SET_NOTE_SUCCESS",
-  SET_NOTE_ERROR = "SET_NOTE_ERROR",
-  SET_NOTE = "SET_NOTE",
+  ADD_NEW_NOTE = "ADD_NEW_NOTE",
+  ADD_NEW_NOTE_SUCCESS = "ADD_NEW_NOTE_SUCCESS",
+  ADD_NEW_NOTE_ERROR = "ADD_NEW_NOTE_ERROR",
 }
 
 interface GetNotesAction {
@@ -31,4 +30,24 @@ interface SetNotesError {
   payload: string;
 }
 
-export type TNotesState = GetNotesAction | SetNotesSuccess | SetNotesError;
+interface AddNewNote {
+  type: NotesActionTypes.ADD_NEW_NOTE;
+}
+
+interface AddNewNoteSuccess {
+  type: NotesActionTypes.ADD_NEW_NOTE_SUCCESS;
+  payload: INote;
+}
+
+interface AddNewNoteError {
+  type: NotesActionTypes.ADD_NEW_NOTE_ERROR;
+  payload: string;
+}
+
+export type TNotesState =
+  | GetNotesAction
+  | SetNotesSuccess
+  | SetNotesError
+  | AddNewNote
+  | AddNewNoteSuccess
+  | AddNewNoteError;
