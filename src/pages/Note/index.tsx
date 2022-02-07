@@ -73,6 +73,7 @@ export const NotePage: FC = () => {
               stylesContainer={{ width: 470 }}
               title={currentNote.title}
               editorContent={currentNote.text}
+              onClose={() => setShowModal(false)}
               isEdit
             />
           }

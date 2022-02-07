@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, MouseEvent } from "react";
 
 export interface AddNoteEditorProps {
   classNames?: string;
@@ -7,4 +7,5 @@ export interface AddNoteEditorProps {
   editorContent?: string;
   noteId?: number;
   isEdit?: boolean;
+  onClose: () => void;
 }

@@ -1,5 +1,11 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
-import Draft, { Editor, EditorState, RichUtils, ContentState } from "draft-js";
+import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from "react";
+import {
+  ContentState,
+  convertFromHTML,
+  Editor,
+  EditorState,
+  RichUtils,
+} from "draft-js";
 import { ClickableIcon } from "../ClickableIcon";
 import { IconTypes } from "../Icon/types";
 import { Input } from "../Input";
@@ -12,7 +18,6 @@ import { StorageHelper } from "../../helpers/storage";
 import { StorageKeys } from "../../constants/storage";
 import { DateHelper } from "../../helpers/date";
 import { rootStore } from "../../store";
-import { convertFromHTML } from "draft-js";
 
 enum EditorStyles {
   Bold = "BOLD",
@@ -29,6 +34,7 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
   title,
   noteId,
   isEdit = false,
+  onClose,
 }) => {
   const [textareaActive, setTextareaActive] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
@@ -74,6 +80,7 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
     };
     addNewNote(note);
     await saveNoteToStorage();
+    onClose();
   };
   let saveNoteToStorage = async () => {
     let { notesReducer } = rootStore.getState();
@@ -103,10 +110,19 @@ export const AddNoteEditor: FC<AddNoteEditorProps> = ({
     );
     setNotes(newNotes);
     await saveNoteToStorage();
+    onClose();
   };
 
   return (
     <div style={stylesContainer} className={`note-editor ${classNames}`}>
+      <ClickableIcon
+        onClick={onClose}
+        icon={IconTypes.Close}
+        classNames="note-editor_close"
+      />
+      <h3 className="note-editor_title">
+        {isEdit ? "Редактировать" : "Добавить"} заметку
+      </h3>
       <div className="note-editor_interface-container">
         <ClickableIcon
           classNames="note-editor_clickable-icon"

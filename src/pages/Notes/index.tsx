@@ -35,7 +35,12 @@ export const NotesPage = () => {
         <Modal
           onAreaClick={closeModal}
           isOpened={showModal}
-          children={<AddNoteEditor stylesContainer={{ width: 470 }} />}
+          children={
+            <AddNoteEditor
+              stylesContainer={{ width: 470 }}
+              onClose={() => setShowModal(false)}
+            />
+          }
         />
       )}
       <main className="notes-page">
