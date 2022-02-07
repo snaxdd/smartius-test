@@ -8,9 +8,10 @@
 
   &_title-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 70px;
+    margin-right: 50px;
   }
 
   &_title {
