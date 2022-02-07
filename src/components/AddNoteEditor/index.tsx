@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import { Editor, EditorState, RichUtils } from "draft-js";
 import { ClickableIcon } from "../ClickableIcon";
 import { IconTypes } from "../Icon/types";

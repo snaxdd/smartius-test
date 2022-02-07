@@ -1,4 +1,4 @@
-import { NotesActionTypes, NotesState, TNotesState } from "../../types/notes";
+import { NotesActionTypes, TNotesState } from "../../types/notes";
 import { Dispatch } from "@reduxjs/toolkit";
 import { INote } from "../../models/note";
 import { StorageHelper } from "../../helpers/storage";
