@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { IconTypes } from "../../components/Icon/types";
 import { ContentContainer } from "../../components/ContentContainer";
@@ -10,6 +10,9 @@ import { Icon } from "../../components/Icon";
 import { UserComment } from "../../components/UserComment";
 import { Modal } from "../../components/Modal";
 import { AddNoteEditor } from "../../components/AddNoteEditor";
+import { setNotes } from "../../store/actions/notesActions";
+import { StorageHelper } from "../../helpers/storage";
+import { StorageKeys } from "../../constants/storage";
 
 export const NotePage: FC = () => {
   const [currentNote, setCurrentNote] = useState<INote>();
@@ -18,6 +21,7 @@ export const NotePage: FC = () => {
   );
   const { getNotes } = useActions();
   const { id } = useParams();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   let contentRef = useRef<HTMLDivElement>(null);
 
@@ -35,18 +39,25 @@ export const NotePage: FC = () => {
     }
   }, [currentNote]);
 
-  const searchCurrentNote = () => {
+  let searchCurrentNote = () => {
     let foundNote = notes.find((note) => note.id === Number.parseFloat(id!));
     setCurrentNote(foundNote);
   };
 
-  const toggleModalShow = () => setShowModal((prevState) => !prevState);
-  const closeModal = (event: MouseEvent<HTMLElement>) => {
+  let toggleModalShow = () => setShowModal((prevState) => !prevState);
+  let closeModal = (event: MouseEvent<HTMLElement>) => {
     let { currentTarget, target } = event;
 
     if (target === currentTarget) {
       setShowModal(false);
     }
+  };
+
+  let onDeleteClick = async () => {
+    let newNotes = notes.filter((note) => note.id !== currentNote!.id);
+    setNotes(newNotes);
+    await StorageHelper.setItem(StorageKeys.Notes, newNotes);
+    navigate("/", { replace: true });
   };
 
   return (
@@ -79,7 +90,10 @@ export const NotePage: FC = () => {
           backButtonLink="/"
         >
           {currentNote && (
-            <UserComment onDeleteClick={() => {}} date={currentNote.createdAt}>
+            <UserComment
+              onDeleteClick={onDeleteClick}
+              date={currentNote.createdAt}
+            >
               <div ref={contentRef} />
             </UserComment>
           )}

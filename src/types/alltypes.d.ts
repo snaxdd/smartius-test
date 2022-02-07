@@ -4,3 +4,10 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+declare function useNavigate(): NavigateFunction;
+
+interface NavigateFunction {
+  (to: To, options?: { replace?: boolean; state?: any }): void;
+  (delta: number): void;
+}

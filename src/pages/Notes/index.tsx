@@ -20,8 +20,8 @@ export const NotesPage = () => {
     getNotes();
   }, []);
 
-  const toggleModalShow = () => setShowModal((prevState) => !prevState);
-  const closeModal = (event: MouseEvent<HTMLElement>) => {
+  let toggleModalShow = () => setShowModal((prevState) => !prevState);
+  let closeModal = (event: MouseEvent<HTMLElement>) => {
     let { currentTarget, target } = event;
 
     if (target === currentTarget) {
