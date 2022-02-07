@@ -3,7 +3,6 @@ import { ContentContainerProps } from "./interfaces";
 import { Button } from "../Button";
 import { IconTypes } from "../Icon/types";
 import { Link } from "react-router-dom";
-import { Note } from "../Note";
 import { Icon } from "../Icon";
 
 export const ContentContainer: FC<ContentContainerProps> = ({

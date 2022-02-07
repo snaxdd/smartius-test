@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import {
   ContentState,
   convertFromHTML,

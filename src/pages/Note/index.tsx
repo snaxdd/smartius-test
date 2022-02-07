@@ -6,7 +6,6 @@ import { ContentContainer } from "../../components/ContentContainer";
 import { useAppSelector } from "../../hooks/useTypedSelector";
 import { INote } from "../../models/note";
 import { useActions } from "../../hooks/useActions";
-import { Icon } from "../../components/Icon";
 import { UserComment } from "../../components/UserComment";
 import { Modal } from "../../components/Modal";
 import { AddNoteEditor } from "../../components/AddNoteEditor";
